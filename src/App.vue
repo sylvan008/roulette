@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <winners-ribbon :winners="winners"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WinnersRibbon from './components/WinnersRibbon';
+import winners from './assets/winners.json';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    WinnersRibbon,
+  },
+  data() {
+    return {
+      winners,
+    };
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  max-width: 570px;
+  margin: 30px auto;
 }
 </style>

@@ -3,31 +3,31 @@
     "name": "Cheyanne",
     "spins": 4,
     "prizeName": "iPhone 11 Pro",
-    "prizeImage": "apple-iphone-11-pro-max.png"
+    "prizeImage": "apple-iphone-11-pro-max-min.png"
   },
   {
     "name": "Bethel.Hills35",
     "spins": 2,
     "prizeName": "Airpods Pro",
-    "prizeImage": "airpods.png"
+    "prizeImage": "airpods-min.png"
   },
   {
     "name": "Berneice",
     "spins": 4,
     "prizeName": "PS 4 Pro",
-    "prizeImage": "ps4.png"
+    "prizeImage": "ps4-min.png"
   },
   {
     "name": "Isadore.Rath",
     "spins": 1,
-    "prizeName": "Macbook Pro",
-    "prizeAnnex": "15’",
-    "prizeImage": "apple-macbook-pro.png"
+    "prizeName": "Macbook",
+    "prizeAnnex": "Pro 15’",
+    "prizeImage": "apple-macbook-pro-min.png"
   },
   {
     "name": "Clementina50",
     "spins": 3,
     "prizeName": "s10 PLUS",
-    "prizeImage": "galaxy-s10-plus.png"
+    "prizeImage": "galaxy-s10-plus-min.png"
   }
 ]

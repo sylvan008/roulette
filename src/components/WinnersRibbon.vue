@@ -1,6 +1,6 @@
 <template>
   <div :class="['winners', isLightTheme ? 'winners--light' : '']">
-    <ul class="winners__list">
+    <transition-group class="winners__list" name="winners__list" tag="ul">
       <li
         v-for="winner of winnersList"
         :key="winner.name"
@@ -20,12 +20,12 @@
         </p>
         <div class="winners__prize-image">
           <img
-            :src="`/img/prize-mini/${winner.prizeImage}`"
+            :src="`./img/prize-mini/${winner.prizeImage}`"
             :alt="`${winner.prize} prize image`"
             class="prize-image">
         </div>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
     },
     winnersLength: {
       type: Number,
-      default: 3,
+      default: 4,
     },
     flipInterval: {
       type: Number,
@@ -68,13 +68,14 @@ export default {
       return Math.floor(Math.random() * winnersCount);
     },
     getRandomItems(itemCount, winners) {
-      this.winnersList.shift();
-      const result = new Set(this.winnersList);
-      while (result.size < itemCount) {
+      const removeItem = this.winnersList.shift();
+      while (this.winnersList.length < itemCount) {
         const randomItem = winners[this.randomIndex(winners.length)];
-        result.add(randomItem);
+        const isInclude = this.winnersList.includes(randomItem);
+        if (!isInclude && randomItem !== removeItem) {
+          this.winnersList.push(randomItem);
+        }
       }
-      this.winnersList = [...result];
     },
     createFlipInterval(delay) {
       return setInterval(() => {
@@ -112,7 +113,6 @@ export default {
   .winners {
     height: 150px;
     padding: 12px 3%;
-
   }
 }
 
@@ -125,6 +125,7 @@ export default {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(180deg, rgba(150, 185, 255, 0.2) 0%, rgba(24, 0, 76, 0.5) 100%);
+  z-index: 100;
 }
 
 .winners__list {
@@ -134,12 +135,13 @@ export default {
 }
 
 .winners__item {
-  margin-bottom: 19px;
+  margin-bottom: 1.2rem;
   padding-left: 5px;
   padding-right: 5px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  transition: all 1s;
 }
 
 /* Winners Text */
@@ -152,13 +154,13 @@ export default {
 
 @media (min-width: 600px) {
   .winners__text {
-    font-size: 26px;
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 599.99px) {
   .winners__text {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -167,7 +169,7 @@ export default {
 
 @media (min-width: 600px) {
   .winners__text--small {
-    font-size: 15px;
+    font-size: 0.9rem;
   }
 }
 
@@ -212,5 +214,13 @@ export default {
   width: 100%;
   height: 100%;
   background-image: linear-gradient(0deg, var(--image-mask, #18004C) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.winners__list-leave-active {
+  width: 94%;
+  position: absolute;
+}
+.winners__list-leave-to {
+  transform: translateY(-150%);
 }
 </style>

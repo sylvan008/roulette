@@ -2,6 +2,7 @@
   <li class="answer-list__item">
     <button
       :class="answerClasses"
+      :style="answerStyle"
       type="button"
       @click="$emit('click')">
       {{ answer.text }}
@@ -30,6 +31,13 @@
           'answer-list__button--fail': this.currentAnswerState === 'fail',
         };
       },
+      answerStyle() {
+        const styles = {};
+        if (this.answer.text.length > 6) {
+          styles['font-size'] = '1rem';
+        }
+        return styles;
+      },
     },
   };
 </script>
@@ -51,13 +59,13 @@
   border: none;
 }
 @media (min-width: 600px) {
-  .answer-list__button {
-    font-size: 47px;
+  .answer-list__item {
+    font-size: 3rem;
   }
 }
 @media (max-width: 599.99px) {
-  .answer-list__button {
-    font-size: 26px;
+  .answer-list__item {
+    font-size: 1.4rem;
   }
 }
 

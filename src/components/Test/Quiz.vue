@@ -1,10 +1,9 @@
 <template>
   <div class="quiz">
-    <div class="question">
-      <p class="question__text">
-        {{ question.text }}
-      </p>
-    </div>
+    <div class="question__number">&#8470;{{ questionNum }}</div>
+    <p class="question">
+      {{ question.text }}
+    </p>
     <answer-list
       :answers="question.answers"
       :answer-state="answerState"
@@ -28,7 +27,11 @@ export default {
     answerState: {
       type: Object,
       default: null,
-    }
+    },
+    questionNum: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
     answerHandler(answerId) {
@@ -40,19 +43,36 @@ export default {
 
 <style scoped>
 /* Question Text */
-.question__text {
+.question {
   margin-top: 10px;
   line-height: 1.1;
   color: #300057;
 }
 @media (min-width: 600px) {
-  .question__text {
-    font-size: 47px;
+  .question {
+    font-size: 3rem;
   }
 }
 @media (max-width: 599.99px) {
-  .question__text {
-    font-size: 26px;
+  .question {
+    font-size: 1.4rem;
+  }
+}
+
+/* Question Number */
+.question__number {
+  margin-top: 1rem;
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+@media (min-width: 600px) {
+  .question__number {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 599.99px) {
+  .question__number {
+    font-size: 1.4rem;
   }
 }
 </style>

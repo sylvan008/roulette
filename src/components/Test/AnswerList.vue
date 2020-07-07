@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     clickHandler(answerId) {
-      console.log('click!')
       this.$emit('answer', answerId);
     },
   },

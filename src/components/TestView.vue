@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import TestStartScreen from './TestStartScreen';
-import TestingScreen from './TestingScreen';
-import TestFinishScreen from './TestFinishScreen';
+import TestStartScreen from './Test/TestStartScreen';
+import TestingScreen from './Test/TestingScreen';
+import TestFinishScreen from './Test/TestFinishScreen';
 
 export default {
   name: 'Test',
@@ -64,7 +64,6 @@ export default {
   methods: {
     nextHandler(e) {
       this.testState++;
-      console.log(e);
     },
     testResultHandler(result) {
       const reducer = (acc, key) => result[key] === 'success' ? ++acc : acc;

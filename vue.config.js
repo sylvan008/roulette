@@ -1,11 +1,17 @@
-// vue.config.js
+// vue config
 // module.exports = {
-//   chainWebpack(config) {
-//     config.module
-//       .rule('fonts')
-//       .test(/\.(eot|svg|ttf|woff|woff2|otf)$/)
-//       .use('file-loader')
-//         .loader('file-loader')
-//         .end()
+//   configureWebpack: {
+//     module: {
+//       rules: [
+//         {
+//           test: /\.scss$/,
+//           use: [
+//             'vue-style-loader',
+//             'css-loader',
+//             'sass-loader'
+//           ]
+//         }
+//       ]
+//     },
 //   }
 // }

@@ -2,8 +2,11 @@
   <div id="app">
     <div class="app">
       <div class="app-vertical-position">
-        <div class="app__test">
-          <test :questions="questions" />
+<!--        <div class="app__test">-->
+<!--          <test :questions="questions" />-->
+<!--        </div>-->
+        <div class="app__roulette">
+          <roulette-view :prizes="prizes"/>
         </div>
       </div>
       <div class="dummy"></div>
@@ -19,19 +22,24 @@
 <script>
 import winners from './assets/winners.json';
 import questions from './assets/questions.json';
+import prizes from './assets/prizes.json';
+
+import RouletteView from './components/RouletteView';
+import Test from './components/TestView';
 import WinnersRibbon from './components/WinnersRibbon';
-import Test from './components/Test/Test';
 
 export default {
   name: 'App',
   components: {
     WinnersRibbon,
     Test,
+    RouletteView,
   },
   data() {
     return {
       winners,
       questions,
+      prizes,
     };
   },
 }

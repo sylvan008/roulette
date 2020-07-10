@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { randomIndex } from '../helpers';
+
 export default {
   name: 'WinnersRibbon',
   props: {
@@ -64,13 +66,10 @@ export default {
     clearInterval(this.interval);
   },
   methods: {
-    randomIndex(winnersCount) {
-      return Math.floor(Math.random() * winnersCount);
-    },
     getRandomItems(itemCount, winners) {
       const removeItem = this.winnersList.shift();
       while (this.winnersList.length < itemCount) {
-        const randomItem = winners[this.randomIndex(winners.length)];
+        const randomItem = winners[randomIndex(winners.length)];
         const isInclude = this.winnersList.includes(randomItem);
         if (!isInclude && randomItem !== removeItem) {
           this.winnersList.push(randomItem);

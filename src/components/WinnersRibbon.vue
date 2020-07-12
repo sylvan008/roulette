@@ -1,5 +1,5 @@
 <template>
-  <div :class="['winners', isLightTheme ? 'winners--light' : '']">
+  <div :class="['winners', `winners--${theme}`]">
     <transition-group class="winners__list" name="winners__list" tag="ul">
       <li
         v-for="winner of winnersList"
@@ -39,9 +39,9 @@ export default {
       type: Array,
       default: () => [],
     },
-    isLightTheme: {
-      type: Boolean,
-      default: false,
+    theme: {
+      type: String,
+      default: 'dark',
     },
     winnersLength: {
       type: Number,

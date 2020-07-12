@@ -56,6 +56,7 @@ export default {
 @media (max-width: 599.99px) {
   .question {
     font-size: 1.4rem;
+    margin-bottom: 0;
   }
 }
 

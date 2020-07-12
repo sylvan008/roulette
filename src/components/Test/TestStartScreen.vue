@@ -8,9 +8,7 @@
     </div>
     <footer>
       <footer class="footer">
-        <button class="test__control" type="button" @click="$emit('next', 'start')">
-          дальше
-        </button>
+        <action-button theme="dark" @click="$emit('next', 'start')">дальше</action-button>
       </footer>
     </footer>
   </test-wrapper>
@@ -19,12 +17,14 @@
 <script>
 import TestWrapper from './TestWrapper';
 import Header from './Header';
+import ActionButton from '../ActionButton';
 
 export default {
   name: 'TestStart',
   components: {
     Header,
     TestWrapper,
+    ActionButton,
   },
 };
 </script>
@@ -33,9 +33,10 @@ export default {
 .test__prizes {
   display: grid;
   height: 100%;
+  justify-items: center;
 }
 .test__prizes-image {
   align-self: center;
-  width: 100%;
+  width: 90%;
 }
 </style>

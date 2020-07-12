@@ -1,10 +1,19 @@
 <template>
-  <button
-    :class="stylesObject"
-    type="button"
-    v-on="$listeners">
-    <slot />
-  </button>
+  <span>
+    <button
+      v-if="tag === 'button'"
+      :class="classes"
+      type="button"
+      v-on="$listeners">
+      <slot />
+    </button>
+    <a
+      v-else-if="tag === 'a'"
+      :class="classes"
+      :href="href">
+      <slot />
+    </a>
+  </span>
 </template>
 
 <script>
@@ -14,30 +23,43 @@ const DARK = 'dark';
 export default {
   name: 'ActionButton',
   props: {
-    themeType: {
+    theme: {
       type: String,
       default: LIGHT,
     },
+    tag: {
+      type: String,
+      default: 'button',
+    },
+    href: {
+      type: String,
+      default: '',
+    }
   },
   computed: {
-    stylesObject() {
-      const styles = ['action__button'];
-      switch (this.themeType) {
+    classes() {
+      const classList = ['action__button'];
+      switch (this.theme) {
         case LIGHT:
-          styles.push(`action__button--${LIGHT}`);
+          classList.push(`action__button--${LIGHT}`);
           break;
         case DARK:
-          styles.push(`action__button--${DARK}`);
+          classList.push(`action__button--${DARK}`);
           break;
       }
-      return styles;
+
+      if (this.tag === 'a') {
+        classList.push('external-link');
+      }
+
+      return classList;
     },
   },
 };
 </script>
 
 <style scoped>
-  /* Test Control */
+  /* Action Button */
   .action__button {
     border: none;
     background: var(--background-color, #1C0057);
@@ -61,5 +83,10 @@ export default {
   }
   .action__button--light {
     --background-color: #0051EF;
+  }
+
+  .external-link {
+    display: inline-block;
+    text-decoration: none;
   }
 </style>

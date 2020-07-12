@@ -81,29 +81,7 @@ export default {
 .footer {
   display: flex;
   justify-content: center;
-}
-
-/* Test Control */
-.test__control {
-  border: none;
-  background: #1C0057;
-  color: #FFFFFF;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-@media (min-width: 600px) {
-  .test__control {
-    padding: 1rem 2.1rem;
-    font-size: 3rem;
-    border-radius: 3rem;
-  }
-}
-@media (max-width: 599.99px) {
-  .test__control {
-    padding: 0.7rem 1.4rem;
-    font-size: 1.4rem;
-    border-radius: 1.4rem;
-  }
+  margin-bottom: 0.5rem;
 }
 
 .fade-in-screen-enter-active, .fade-in-screen-leave-active {

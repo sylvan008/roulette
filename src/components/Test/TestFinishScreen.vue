@@ -23,18 +23,20 @@
       </div>
     </div>
     <footer class="footer">
-      <a :href="externalLink" class="external-link test__control">забрать приз</a>
+      <action-button tag="a" href="#" theme="dark">забрать приз</action-button>
     </footer>
   </test-wrapper>
 </template>
 
 <script>
 import TestWrapper from './TestWrapper';
+import ActionButton from '../ActionButton';
 
 export default {
   name: 'TestFinishScreen',
   components: {
     TestWrapper,
+    ActionButton,
   },
   props: {
     externalLink: {
@@ -67,10 +69,6 @@ export default {
 <style scoped>
 .header-finish {
   position: relative;
-}
-
-.external-link {
-  text-decoration: none;
 }
 
 .prize-image {
@@ -114,7 +112,7 @@ export default {
 /* Congratulation */
 .congratulation {
   max-width: 80%;
-  margin: 60px auto 0;
+  margin: 5% auto 0;
   display: grid;
   align-items: center;
   text-align: center;

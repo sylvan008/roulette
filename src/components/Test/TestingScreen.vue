@@ -14,7 +14,7 @@
       </transition>
     </div>
     <footer class="footer">
-      <button class="test__control" type="button" @click="nextQuestion">дальше</button>
+      <action-button theme="dark" @click="nextQuestion">дальше</action-button>
     </footer>
   </test-wrapper>
 </template>
@@ -24,6 +24,7 @@ import TestWrapper from './TestWrapper';
 import Header from './Header';
 import QuestionIndicator from './QuestionIndicator';
 import Quiz from './Quiz';
+import ActionButton from '../ActionButton';
 
 export default {
   name: 'TestScreen',
@@ -32,6 +33,7 @@ export default {
     Header,
     QuestionIndicator,
     Quiz,
+    ActionButton,
   },
   props: {
     questions: {

@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <div class="app">
+    <div :class="['app', `app--${theme}`, {blur: blur}]">
       <div class="app-vertical-position">
-<!--        <div class="app__test">-->
-<!--          <test-view :questions="questions" />-->
-<!--        </div>-->
-        <div class="app__roulette">
-          <roulette-view :prizes="prizes"/>
+        <div class="app-horizontal-position" :style="{maxWidth: appState === 0 ? '100%' : '80%'}">
+          <component
+            :is="currentComponent"
+            v-bind="componentProps"
+            @next="appState++"/>
         </div>
       </div>
       <div class="dummy"></div>
       <div class="app__winners">
         <winners-ribbon
           :winners="winners"
-          :flip-interval="3000"/>
+          :flip-interval="3000"
+          :theme="theme"/>
       </div>
     </div>
+    <portal-target name="popup" :transitoin="fadeTransition" @change="portalHandle"/>
   </div>
 </template>
 
@@ -28,6 +30,9 @@ import RouletteView from './components/RouletteView';
 import TestView from './components/TestView';
 import WinnersRibbon from './components/WinnersRibbon';
 
+const ROULETTE = 0;
+const TEST = 1;
+
 export default {
   name: 'App',
   components: {
@@ -37,11 +42,51 @@ export default {
   },
   data() {
     return {
+      theme: 'light',
+      blur: false,
+      appState: ROULETTE,
       winners,
       questions,
       prizes,
     };
   },
+  computed: {
+    currentComponent() {
+      switch (this.appState) {
+        case ROULETTE:
+          this.theme = 'dark';
+          return 'roulette-view';
+        case TEST:
+          this.theme = 'light';
+          return 'test-view';
+      }
+    },
+    componentProps() {
+      switch (this.appState) {
+        case ROULETTE:
+          return {
+            prizes,
+          };
+        case TEST:
+          return {
+            questions,
+          };
+      }
+    },
+    fadeTransition() {
+      return {
+        functional: true,
+        render(h, context) {
+          return h('transition', { props: { name: 'fade' } }, context.children)
+        }
+      };
+    },
+  },
+  methods: {
+    portalHandle(newContent) {
+      this.blur = newContent;
+    }
+  }
 }
 </script>
 
@@ -52,7 +97,17 @@ export default {
   width: 100vw;
   display: grid;
   grid-template-rows: minmax(auto, 550px) 1fr 110px;
+  overflow: auto;
 }
+
+.app--dark {
+  background-color: #18004D;
+}
+
+.app--light {
+  background-color: #E5E5E5;
+}
+
 /* App Winners */
 .app__winners  {
   max-width: 570px;
@@ -71,19 +126,33 @@ export default {
 }
 
 /* App Test */
-.app__test {
-  margin-left: 10%;
-  margin-right: 10%;
+.app-horizontal-position {
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   height: 100%;
 }
-@media (min-width: 600px) {
-  .app__test {
-    max-width: 574px;
+
+@media (max-width: 599.99px) {
+  .app-horizontal-position {
+    max-height: 570px;
   }
 }
+
 .app-vertical-position {
   position: relative;
   margin-top: 10%;
+}
+
+.blur {
+  filter: blur(2px);
+}
+
+.fade-enter-active, .fade-leave-active {
+  opacity: 100%;
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

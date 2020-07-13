@@ -83,6 +83,15 @@ export default {
       };
     },
   },
+  mounted() {
+    const hash = location.hash.replace('#', '');
+    if (hash === 'roulette') {
+      this.appState = ROULETTE;
+    }
+    else if (hash === 'quiz') {
+      this.appState = TEST;
+    }
+  },
   methods: {
     portalHandle(newContent) {
       this.blur = newContent;

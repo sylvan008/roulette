@@ -15,5 +15,11 @@ npm run serve
 npm run build
 ```
 
+### Landing Link
+Open the file `.env`
+```
+VUE_APP_LANDING_PAGE=https://www.example.com/
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

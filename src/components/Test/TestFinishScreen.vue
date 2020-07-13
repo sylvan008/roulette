@@ -23,7 +23,7 @@
       </div>
     </div>
     <footer class="footer">
-      <action-button tag="a" href="#" theme="dark">забрать приз</action-button>
+      <action-button tag="a" :href="link" theme="dark">забрать приз</action-button>
     </footer>
   </test-wrapper>
 </template>
@@ -52,6 +52,11 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  data() {
+    return {
+      link: process.env.VUE_APP_LANDING_PAGE,
+    };
   },
   computed: {
     congratulationText() {

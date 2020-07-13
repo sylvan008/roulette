@@ -24,7 +24,7 @@
         </div>
       </div>
       <footer class="footer">
-        <action-button theme="dark" @click="actionHandler">забрать приз</action-button>
+        <action-button tag="a" :href="link" theme="dark" @click="actionHandler">забрать приз</action-button>
       </footer>
     </div>
   </div>
@@ -43,6 +43,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      link: process.env.VUE_APP_LANDING_PAGE,
+    };
   },
   methods: {
     actionHandler() {

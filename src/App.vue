@@ -70,6 +70,7 @@ export default {
         case TEST:
           return {
             questions,
+            prizes,
           };
       }
     },
@@ -154,5 +155,9 @@ export default {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.dummy {
+  margin-top: 10px;
 }
 </style>

@@ -25,6 +25,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    prizes: {
+      type: Array,
+      required: true,
+    }
   },
   data() {
     return {
@@ -33,6 +37,9 @@ export default {
     };
   },
   computed: {
+    targetPrize() {
+      return this.prizes.find(prize => prize.isTargetPrize);
+    },
     currentScreen() {
       switch (this.testState) {
         case 0:
@@ -53,11 +60,8 @@ export default {
           return {
             externalLink: '#',
             testResult: this.testResult,
-            prize: {
-              name: 'iPhone 11',
-              image: 'ps-4.png',
-            }
-          }
+            prize: this.targetPrize,
+          };
       }
     },
   },

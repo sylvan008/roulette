@@ -3,10 +3,10 @@
     <header class="header-finish">
       <div class="prize-description">
         <p class="prize-description__title">ваш приз:</p>
-        <h2 class="prize-description__name">{{ prize.name }}</h2>
+        <h2 class="prize-description__name">{{ prize.prizeName }}</h2>
       </div>
       <div class="prize-image">
-        <img :src="`./img/prizes/${prize.image}`" :alt="`prize image ${prize.name}`">
+        <img :src="prize.prizeImage" :alt="`prize image ${prize.prizeName}`">
       </div>
     </header>
     <div class="test-body">
@@ -69,17 +69,21 @@ export default {
 <style scoped>
 .header-finish {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .prize-image {
+  width: 100px;
+  height: 80px;
+  position: relative;
 }
 
 .prize-image img {
   position: absolute;
-  max-width: 130px;
   width: 100%;
-  top: -55px;
-  right: -45px;
+  top: -30%;
+  right: 0;
 }
 
 /* Prize Description Title */
@@ -101,7 +105,6 @@ export default {
   font-weight: 600;
   color: #1C0057;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 @media (max-width: 599.99px) {
   .prize-description__name {

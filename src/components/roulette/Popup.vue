@@ -120,7 +120,7 @@ export default {
   .prize-image img {
     position: absolute;
     width: 100%;
-    top: -60%;
+    top: -30%;
     right: 0;
   }
 

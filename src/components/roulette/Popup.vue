@@ -14,7 +14,7 @@
         <div class="congratulation">
           <div class="congratulation__image">
             <div class="image-wrapper">
-              <img :src="'./img/smile.png'" alt="congratulation image">
+              <img src="../../../public/img/smile.png" alt="congratulation image">
             </div>
           </div>
           <p class="congratulation__title">Поздравляем!</p>

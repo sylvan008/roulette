@@ -5,8 +5,7 @@
         <div class="app-horizontal-position" :style="{maxWidth: appState === 0 ? '100%' : '80%'}">
           <component
             :is="currentComponent"
-            v-bind="componentProps"
-            @next="appState++"/>
+            v-bind="componentProps"/>
         </div>
       </div>
       <div class="dummy"></div>
@@ -17,7 +16,7 @@
           :theme="theme"/>
       </div>
     </div>
-    <portal-target name="popup" :transitoin="fadeTransition" @change="portalHandle"/>
+    <portal-target name="popup" @change="portalHandle"/>
   </div>
 </template>
 
@@ -42,7 +41,7 @@ export default {
   },
   data() {
     return {
-      theme: 'light',
+      theme: 'dark',
       blur: false,
       appState: ROULETTE,
       winners,
@@ -74,21 +73,14 @@ export default {
           };
       }
     },
-    fadeTransition() {
-      return {
-        functional: true,
-        render(h, context) {
-          return h('transition', { props: { name: 'fade' } }, context.children)
-        }
-      };
-    },
   },
   mounted() {
-    const hash = location.hash.replace('#', '');
-    if (hash === 'roulette') {
+    const APP_MODE = process.env.VUE_APP_MODE;
+
+    if (APP_MODE === 'roulette') {
       this.appState = ROULETTE;
     }
-    else if (hash === 'quiz') {
+    else if (APP_MODE === 'quiz') {
       this.appState = TEST;
     }
   },

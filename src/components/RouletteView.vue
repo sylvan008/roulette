@@ -7,7 +7,12 @@
     <div class="roulette__frame">
       <ul :class="rouletteClasses" :style="rouletteStyles">
         <li v-for="(prize, index) of prizes" :key="index + 1" class="roulette-item">
-          <img class="roulette__prize-image" :src="prize.prizeImage" alt="">
+          <div v-if="prize.isRotationMore" class="roulette__prize-text-position">
+            <span class="roulette__prize-text">
+              крутить ещё
+            </span>
+          </div>
+          <img v-else class="roulette__prize-image" :src="prize.prizeImage" alt="">
         </li>
       </ul>
     </div>
@@ -141,12 +146,12 @@ export default {
   }
 
   .roulette-item {
+    position: absolute;
     top: 30px;
     right: 0;
     left: 0;
-    margin: auto;
-    position: absolute;
     display: block;
+    margin: auto;
     width: 100px;
     height: 124px;
     transform-origin: 50px 124px;
@@ -208,6 +213,22 @@ export default {
     max-width: 63%;
     margin: 0 auto;
     max-height: 70px;
+  }
+
+  .roulette__prize-text-position {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .roulette__prize-text {
+    writing-mode: tb-rl;
+    transform: rotate(180deg);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: end;
+    text-transform: uppercase;
+    color: #FFFFFF;
   }
 
   .roulette__motivation {

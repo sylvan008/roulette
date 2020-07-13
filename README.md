@@ -7,12 +7,16 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run serve:quiz
+or
+npm run serve:roulette
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+npm run build:quiz
+or
+npm run build:roulette
 ```
 
 ### Landing Link

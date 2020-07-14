@@ -76,12 +76,19 @@ export default {
   },
   mounted() {
     const APP_MODE = process.env.VUE_APP_MODE;
+    const hash = window.location.hash.replace('#', '');
+    const setAppState = (setMode) => {
+      if (setMode === 'roulette') {
+        this.appState = ROULETTE;
+      } else if (setMode === 'quiz') {
+        this.appState = TEST;
+      }
+    };
 
-    if (APP_MODE === 'roulette') {
-      this.appState = ROULETTE;
-    }
-    else if (APP_MODE === 'quiz') {
-      this.appState = TEST;
+    if (hash) {
+      setAppState(hash);
+    } else {
+      setAppState(APP_MODE);
     }
   },
   methods: {
